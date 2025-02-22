@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converted Photos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2B2D42;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #8D99AE;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-box {
+            background: #EDF2F4;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            width: 220px;
+        }
+        img {
+            width: 200px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .download-btn, .delete-btn {
+            display: block;
+            margin-top: 5px;
+            padding: 5px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .download-btn {
+            background: #28A745; /* Green */
+        }
+        .download-btn:hover {
+            background: #218838;
+        }
+        .delete-btn {
+            background: #EF233C; /* Red */
+        }
+        .delete-btn:hover {
+            background: #D90429;
+        }
+
+        /* Back to Home Button */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #00c9ff, #92fe9d);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 5px 20px rgba(0, 201, 255, 0.6);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        {% for img in images %}
+        {% set file_path = 'static/' + img['cartoon'] %}
+        {% if file_path|file_exists %}  <!-- Check if the file exists -->
+            <div class="image-box">
+                <img src="{{ url_for('static', filename=img['cartoon']) }}" alt="Cartoonified Image">
+                <a href="{{ url_for('static', filename=img['cartoon']) }}" download class="download-btn">Download</a>
+                <a href="{{ url_for('delete_image', filename=img['cartoon'].split('/')[-1]) }}" class="delete-btn">🗑 Delete</a>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    
+
+        <!-- Back to Home Button -->
+        <a href="{{ url_for('index') }}" class="back-btn">🏠 Back to Home</a>
+    </div>
+</body>
+</html>

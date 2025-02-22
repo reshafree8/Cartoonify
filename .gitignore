@@ -1,0 +1,24 @@
+# Python cache files  
+__pycache__/   
+
+# Virtual environment  
+venv/  
+env/  
+
+# Dependency files  
+*.log  
+*.db  
+*.sqlite3  
+
+# IDE and editor files  
+.vscode/  
+*.swp  
+*.swo  
+
+# Environment variables  
+.env  
+
+# Uploaded & processed images  
+uploads/  
+results/  
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Results</title>
+    <style>
+        /* General body styling */
+        body {
+            background-color: #2B2D42;
+            font-family: Arial, sans-serif;
+            color: #EDF2F4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: #8D99AE;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* Sparkling stars at the top */
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .stars i {
+            font-size: 40px;
+            color: transparent;
+            animation: sparkle-stars 1.5s infinite alternate;
+        }
+
+        .stars i:nth-child(1) { animation-delay: 0s; }
+        .stars i:nth-child(2) { animation-delay: 0.2s; }
+        .stars i:nth-child(3) { animation-delay: 0.4s; }
+        .stars i:nth-child(4) { animation-delay: 0.6s; }
+        .stars i:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes sparkle-stars {
+            0% {
+                color: #FFD700;
+                text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+            }
+            100% {
+                color: #FFFFFF;
+                text-shadow: 0 0 15px #FFFFFF, 0 0 30px #FFFFFF;
+            }
+        }
+
+        /* Sparkling paragraph */
+        .description p {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+            animation: sparkle-text 2s infinite alternate;
+        }
+
+        @keyframes sparkle-text {
+            0% {
+                color: #EDF2F4;
+                text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+            }
+            100% {
+                color: #FFD700;
+                text-shadow: 0 0 20px #FF4500, 0 0 30px #FF4500, 0 0 40px #FF4500;
+            }
+        }
+
+        /* Image container styling */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Small gap between images */
+            margin-top: 30px;
+        }
+
+        /* Images styling */
+        .image-container img {
+            max-width: 45%;
+            height: 400px; /* Ensures both images are the same size */
+            object-fit: cover;
+            border: 4px solid #EDF2F4;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Button styling */
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #EF233C;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #D90429;
+        }
+
+        /* Responsive Design */
+    @media (max-width: 768px) {
+        .image-container {
+            flex-direction: column; /* Stack images vertically */
+        }
+
+        .image-container img {
+            max-width: 90%; /* Adjust image width to fit smaller screens */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .container {
+            width: 90%; /* Make container fit the screen better */
+            padding: 15px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sparkling stars -->
+        <div class="stars">
+            <i>✨</i>
+            <i>✨</i>
+            <i>✨</i>
+        </div>
+
+        <!-- Single sparkling paragraph -->
+        <div class="description">
+            <p>
+                Your photo has been enhanced with vivid colors and artistic edge effects!.
+            </p>
+            <p>We hope you love this animated transformation of your image.</p>
+        </div>
+
+        <!-- Image comparison section -->
+        <div class="image-container">
+            <!-- Uploaded image -->
+            <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded Image">
+
+            <!-- Cartoonified image -->
+            <img src="{{ url_for('static', filename=cartoon_image) }}" alt="Cartoonified Image">
+        </div>
+
+        <!-- Back button -->
+        <div>
+            <a href="{{ url_for('index') }}" class="back-button">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
